@@ -301,6 +301,7 @@ export default function Home() {
                   fill
                   className="object-cover object-center"
                   sizes="40px"
+                  priority
                 />
               </div>
               <span className="font-bold tracking-tight hidden sm:inline-block text-white">
@@ -470,10 +471,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-blue-950/80" />
           {/* Grid pattern */}
           <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px'
-            }} />
+            <div className="absolute inset-0 grid-pattern-blue" />
           </div>
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl float-element" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl float-delayed" />
@@ -698,10 +696,7 @@ export default function Home() {
       >
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }} />
+          <div className="absolute inset-0 grid-pattern-blue-sm" />
         </div>
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-900/20 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-900/20 to-transparent rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
@@ -806,10 +801,7 @@ export default function Home() {
         {/* Background decorative elements */}
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-25">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)`,
-            backgroundSize: '55px 55px'
-          }} />
+          <div className="absolute inset-0 grid-pattern-indigo" />
         </div>
         <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-l from-indigo-900/30 to-transparent rounded-full blur-3xl translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-r from-blue-900/30 to-transparent rounded-full blur-3xl -translate-x-1/2" />
@@ -1003,10 +995,7 @@ export default function Home() {
 
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }} />
+          <div className="absolute inset-0 grid-pattern-blue-light" />
         </div>
 
         {/* Floating background elements */}
