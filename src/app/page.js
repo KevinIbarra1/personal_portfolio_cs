@@ -142,7 +142,6 @@ const SECTIONS = [
   "Projects",
   "Experience",
   "Skills",
-  "Testimonials",
   "Contact",
 ];
 
