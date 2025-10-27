@@ -294,13 +294,13 @@ export default function Home() {
                 scrollToId("home");
               }}
             >
-              <div className="relative h-8 w-8 rounded-xl overflow-hidden group-hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-blue-200">
+              <div className="relative h-10 w-10 rounded-2xl overflow-hidden group-hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-blue-400/50 border-2 border-slate-700 group-hover:border-blue-500">
                 <Image
                   src="/IMG_2931 3.PNG"
                   alt={`${NAME} logo`}
                   fill
-                  className="object-cover"
-                  sizes="32px"
+                  className="object-cover object-center"
+                  sizes="40px"
                 />
               </div>
               <span className="font-bold tracking-tight hidden sm:inline-block text-white">
@@ -468,8 +468,22 @@ export default function Home() {
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-blue-950/80" />
+          {/* Grid pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px)`,
+              backgroundSize: '60px 60px'
+            }} />
+          </div>
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl float-element" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl float-delayed" />
+          <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl" />
+
+          {/* Floating geometric shapes */}
+          <div className="absolute top-32 left-20 w-16 h-16 border-2 border-blue-500/20 rounded-lg rotate-12 float-element" />
+          <div className="absolute bottom-40 right-32 w-20 h-20 border-2 border-indigo-500/20 rounded-full float-delayed" />
+          <div className="absolute top-2/3 right-1/4 w-12 h-12 border-2 border-purple-500/20 rotate-45 float-element" style={{ animationDelay: '1.5s' }} />
+          <div className="absolute bottom-1/3 left-1/4 w-14 h-14 bg-blue-500/10 rounded-lg rotate-6 float-delayed" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">
@@ -683,8 +697,22 @@ export default function Home() {
         className="py-20 lg:py-28 bg-gradient-to-br from-slate-900/50 to-blue-950/30 scroll-mt-24 relative overflow-hidden"
       >
         {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-900/20 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-900/20 to-transparent rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-br from-purple-900/15 to-transparent rounded-full blur-3xl" />
+
+        {/* Floating geometric shapes */}
+        <div className="absolute top-20 right-10 w-20 h-20 border-2 border-blue-500/20 rounded-lg rotate-12 float-element" />
+        <div className="absolute bottom-32 left-16 w-16 h-16 border-2 border-indigo-500/20 rounded-full float-delayed" />
+        <div className="absolute top-1/2 right-20 w-12 h-12 border-2 border-purple-500/20 rotate-45 float-element" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 left-1/3 w-8 h-8 bg-blue-500/10 rounded-lg rotate-6 float-delayed" />
+        <div className="absolute top-1/4 left-1/4 w-24 h-24 border border-indigo-500/10 rounded-full float-element" style={{ animationDelay: '2s' }} />
 
         <div className="mx-auto max-w-7xl px-6 relative">
           <div className="text-center mb-16 animate-on-scroll">
@@ -696,32 +724,29 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-indigo-500 md:left-1/2 rounded-full shadow-lg" />
-            <div className="grid gap-12">
+          <div className="relative max-w-5xl mx-auto">
+            {/* Timeline line */}
+            <div className="absolute left-[1.875rem] top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-indigo-500/50 to-purple-500/50 hidden md:block" />
+
+            <div className="space-y-8">
               {EXPERIENCE.map((e, i) => (
                 <div
                   key={i}
-                  className="relative animate-on-scroll"
-                  style={{ animationDelay: `${i * 0.2}s` }}
+                  className="relative animate-on-scroll group"
+                  style={{ animationDelay: `${i * 0.15}s` }}
                 >
-                  <div
-                    className={`hidden md:block absolute top-8 ${
-                      i % 2
-                        ? "right-[calc(50%-0.5rem)]"
-                        : "left-[calc(50%-0.5rem)]"
-                    } w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 ring-4 ring-white shadow-lg animate-scale`}
-                  />
-                  <div
-                    className={`md:grid md:grid-cols-2 md:gap-12 ${
-                      i % 2 ? "md:direction-rtl" : ""
-                    }`}
-                    style={i % 2 ? { direction: "rtl" } : {}}
-                  >
-                    <div className={`${i % 2 ? "md:order-2" : ""}`}>
-                      <div className="relative bg-slate-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-slate-700/50 hover:border-slate-600 hover-glow">
+                  {/* Timeline dot - positioned to align with the line */}
+                  <div className="absolute left-[1.125rem] top-8 w-6 h-6 hidden md:flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 ring-4 ring-slate-900/50 shadow-lg group-hover:ring-blue-500/30 transition-all duration-300 group-hover:scale-110" />
+                  </div>
+
+                  {/* Card content with left margin to make space for timeline */}
+                  <div className="md:ml-20">
+                    <div className="relative bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-700/50 hover:border-blue-500/30 group-hover:bg-slate-800/80">
+                      {/* Type badge */}
+                      <div className="flex items-start justify-between gap-4 mb-4">
                         <span
-                          className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold mb-4 ${
+                          className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs font-semibold ${
                             e.type === "internship"
                               ? "bg-gradient-to-r from-green-900/50 to-emerald-900/50 text-green-300 border border-green-700/50"
                               : e.type === "employment"
@@ -739,34 +764,32 @@ export default function Home() {
                             ? "Program"
                             : "Entrepreneurship"}
                         </span>
-
-                        <h3 className="text-xl font-bold text-white mb-2">
-                          {e.role}
-                        </h3>
-                        <p className="text-blue-400 font-semibold text-lg mb-1">
-                          {e.company}
-                        </p>
-                        <p className="text-sm text-slate-400 mb-6 font-medium">
+                        <span className="text-sm text-slate-400 font-medium whitespace-nowrap">
                           {e.period}
-                        </p>
-
-                        <ul className="space-y-3 text-slate-300">
-                          {e.bullets.map((b, j) => (
-                            <li
-                              key={j}
-                              className="flex items-start gap-3 animate-on-scroll"
-                              style={{
-                                animationDelay: `${i * 0.2 + j * 0.1}s`,
-                              }}
-                            >
-                              <span className="flex-shrink-0 w-2 h-2 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full mt-2" />
-                              <span className="leading-relaxed">{b}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        </span>
                       </div>
+
+                      {/* Role and company */}
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
+                        {e.role}
+                      </h3>
+                      <p className="text-blue-400 font-semibold text-base md:text-lg mb-6">
+                        {e.company}
+                      </p>
+
+                      {/* Bullet points */}
+                      <ul className="space-y-3 text-slate-300">
+                        {e.bullets.map((b, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-3"
+                          >
+                            <span className="flex-shrink-0 w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full mt-2" />
+                            <span className="leading-relaxed text-sm md:text-base">{b}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <div className="hidden md:block" />
                   </div>
                 </div>
               ))}
@@ -781,8 +804,23 @@ export default function Home() {
         className="py-20 lg:py-28 scroll-mt-24 bg-gradient-to-br from-slate-950 to-blue-950/30 relative overflow-hidden"
       >
         {/* Background decorative elements */}
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-25">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '55px 55px'
+          }} />
+        </div>
         <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-l from-indigo-900/30 to-transparent rounded-full blur-3xl translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-r from-blue-900/30 to-transparent rounded-full blur-3xl -translate-x-1/2" />
+        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-purple-900/20 rounded-full blur-3xl" />
+
+        {/* Floating geometric shapes */}
+        <div className="absolute top-40 left-10 w-18 h-18 border-2 border-indigo-500/20 rounded-lg rotate-12 float-element" />
+        <div className="absolute bottom-20 right-16 w-16 h-16 border-2 border-blue-500/20 rounded-full float-delayed" />
+        <div className="absolute top-1/3 right-1/3 w-10 h-10 border-2 border-purple-500/20 rotate-45 float-element" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/3 left-1/4 w-12 h-12 bg-indigo-500/10 rounded-lg rotate-6 float-delayed" />
+        <div className="absolute top-1/4 right-1/4 w-20 h-20 border border-blue-500/10 rounded-full float-element" style={{ animationDelay: '2s' }} />
 
         <div className="mx-auto max-w-7xl px-6 relative">
           <div className="text-center mb-16 animate-on-scroll">
@@ -827,9 +865,9 @@ export default function Home() {
                   };
 
                   const categoryIcons = {
-                    Frontend: "🎨",
-                    "Backend & Cloud": "⚡",
-                    DevOps: "🚀",
+                    Frontend: "",
+                    "Backend & Cloud": "",
+                    DevOps: "",
                   };
 
                   const colors = categoryColors[category] || {
@@ -853,9 +891,11 @@ export default function Home() {
                       >
                         {/* Category header */}
                         <div className="flex items-center gap-3 mb-6">
-                          <div className="text-2xl">
-                            {categoryIcons[category] || "🛠️"}
-                          </div>
+                          {categoryIcons[category] && (
+                            <div className="text-2xl">
+                              {categoryIcons[category]}
+                            </div>
+                          )}
                           <div>
                             <h3 className="font-bold text-xl text-white">
                               {category}
@@ -873,18 +913,18 @@ export default function Home() {
                           {skills.map((skill, skillIndex) => {
                             // Technology logos/icons mapping
                             const techIcons = {
-                              "Next.js": "⚛️",
-                              TypeScript: "🔷",
-                              "React Native": "📱",
-                              "Tailwind CSS": "🎨",
-                              AWS: "☁️",
-                              "Node.js": "🟢",
-                              Python: "🐍",
-                              PostgreSQL: "🐘",
-                              Terraform: "🏗️",
-                              Docker: "🐳",
-                              "CI/CD": "🔄",
-                              "GitHub Actions": "⚙️",
+                              "Next.js": "",
+                              TypeScript: "",
+                              "React Native": "",
+                              "Tailwind CSS": "",
+                              AWS: "",
+                              "Node.js": "",
+                              Python: "",
+                              PostgreSQL: "",
+                              Terraform: "",
+                              Docker: "",
+                              "CI/CD": "",
+                              "GitHub Actions": "",
                             };
 
                             return (
@@ -903,9 +943,11 @@ export default function Home() {
                                   <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
                                       {/* Technology icon */}
-                                      <div className="text-lg">
-                                        {techIcons[skill] || "⚡"}
-                                      </div>
+                                      {techIcons[skill] && (
+                                        <div className="text-lg">
+                                          {techIcons[skill]}
+                                        </div>
+                                      )}
                                       <span className="font-semibold text-white group-hover:text-opacity-90">
                                         {skill}
                                       </span>
@@ -959,9 +1001,24 @@ export default function Home() {
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 [background:radial-gradient(ellipse_at_center,rgba(255,255,255,.1)_0,transparent_60%)]" />
 
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
         {/* Floating background elements */}
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl float-element" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl float-delayed" />
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-600/15 rounded-full blur-3xl" />
+
+        {/* Floating geometric shapes */}
+        <div className="absolute top-24 right-20 w-16 h-16 border-2 border-blue-500/20 rounded-lg rotate-12 float-element" />
+        <div className="absolute bottom-28 left-24 w-14 h-14 border-2 border-indigo-500/20 rounded-full float-delayed" />
+        <div className="absolute top-1/3 left-1/3 w-10 h-10 border-2 border-purple-500/20 rotate-45 float-element" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-12 h-12 bg-blue-500/10 rounded-lg rotate-6 float-delayed" />
 
         <div className="relative mx-auto max-w-7xl px-6">
           <div className="rounded-3xl border border-slate-700/50 bg-slate-800/20 backdrop-blur-2xl p-12 md:p-20 text-center text-white shadow-2xl animate-on-scroll">
