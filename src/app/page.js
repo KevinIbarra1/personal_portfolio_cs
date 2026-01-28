@@ -1,6 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
+import {
+  fadeUp,
+  fadeLeft,
+  fadeRight,
+  scaleIn,
+  staggerContainer,
+  staggerItem,
+  menuOverlay,
+  menuItem,
+  menuContainer,
+  socialContainer,
+  socialItem,
+  viewportOnce,
+  createDelayedFadeUp,
+} from "../lib/animations";
 
 const NAME = "Kevin Ibarra Rodriguez";
 const TAGLINE = "Software Engineer — Full-Stack & Cloud Enablement ";
@@ -257,29 +273,9 @@ export default function Home() {
     };
   }, [isOpen]);
 
-  // Scroll-triggered animations
-  useEffect(() => {
-    const animateElements = document.querySelectorAll(
-      ".animate-on-scroll, .animate-left, .animate-right, .animate-scale"
-    );
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate");
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    animateElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
+    <LazyMotion features={domAnimation}>
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white">
       {/* Top nav with glassmorphism effect */}
       <header className="sticky top-0 z-[60] backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/50 shadow-sm">
@@ -376,91 +372,93 @@ export default function Home() {
         </div>
 
         {/* Fullscreen Mobile Menu Overlay */}
-        <div
-          className={`mobile-menu-overlay md:hidden fixed inset-0 z-50 transform transition-all duration-700 ${
-            isOpen
-              ? "translate-y-0 opacity-100 visible ease-out"
-              : "-translate-y-full opacity-0 invisible ease-in"
-          }`}
-          style={{
-            height: "100vh",
-            height: "100dvh",
-            transitionTimingFunction: isOpen
-              ? "cubic-bezier(0.23, 1, 0.32, 1)"
-              : "cubic-bezier(0.755, 0.05, 0.855, 0.06)",
-          }}
-        >
-          {/* Backdrop with blur */}
-          <div
-            className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-indigo-900/95 backdrop-blur-xl cursor-pointer"
-            onClick={() => setIsOpen(false)}
-          />
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="mobile-menu-overlay md:hidden fixed inset-0 z-50"
+              style={{ height: "100dvh" }}
+              variants={menuOverlay}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+            >
+              {/* Backdrop with blur */}
+              <div
+                className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-indigo-900/95 backdrop-blur-xl cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              />
 
-          {/* Menu Content */}
-          <div className="relative h-full w-full flex flex-col items-center justify-center px-4 py-20 safe-area-inset overflow-hidden">
-            {/* Navigation Items */}
-            <nav className="flex flex-col items-center justify-center flex-1 w-full max-w-sm">
-              <div className="space-y-6 sm:space-y-8 text-center">
-                {SECTIONS.map((item, index) => {
-                  const id = item.toLowerCase();
-                  const isActive = active === id;
-                  return (
-                    <a
-                      key={item}
-                      href={`#${id}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToId(id);
-                        setIsOpen(false);
-                      }}
-                      className={`mobile-menu-item block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight transform transition-all duration-300 hover:scale-105 active:scale-95 relative group ${
-                        isActive
-                          ? "text-white"
-                          : "text-white/70 hover:text-white active:text-white"
-                      } ${isOpen ? "animate" : ""}`}
-                      style={{
-                        animationDelay: isOpen
-                          ? `${index * 0.12 + 0.15}s`
-                          : "0s",
-                      }}
-                    >
-                      {item}
-                      {/* Animated underline */}
-                      <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 transition-all duration-300 group-hover:w-3/4" />
-                    </a>
-                  );
-                })}
-              </div>
-            </nav>
+              {/* Menu Content */}
+              <div className="relative h-full w-full flex flex-col items-center justify-center px-4 py-20 safe-area-inset overflow-hidden">
+                {/* Navigation Items */}
+                <nav className="flex flex-col items-center justify-center flex-1 w-full max-w-sm">
+                  <motion.div
+                    className="space-y-6 sm:space-y-8 text-center"
+                    variants={menuContainer}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {SECTIONS.map((item) => {
+                      const id = item.toLowerCase();
+                      const isActive = active === id;
+                      return (
+                        <motion.a
+                          key={item}
+                          href={`#${id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToId(id);
+                            setIsOpen(false);
+                          }}
+                          className={`block text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-300 hover:scale-105 active:scale-95 relative group ${
+                            isActive
+                              ? "text-white"
+                              : "text-white/70 hover:text-white active:text-white"
+                          }`}
+                          variants={menuItem}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          {item}
+                          {/* Animated underline */}
+                          <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 transition-all duration-300 group-hover:w-3/4" />
+                        </motion.a>
+                      );
+                    })}
+                  </motion.div>
+                </nav>
 
-            {/* Social Links in Mobile Menu */}
-            <div className="flex items-center justify-center gap-4 sm:gap-6 mt-auto mb-4">
-              {SOCIAL.map((s, index) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target={s.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  className={`mobile-social-item p-3 sm:p-4 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-300 hover:scale-110 active:scale-95 transform text-white backdrop-blur-sm border border-white/20 hover:border-white/30 ${
-                    isOpen ? "animate" : ""
-                  }`}
-                  aria-label={s.label}
-                  style={{
-                    animationDelay: isOpen
-                      ? `${SECTIONS.length * 0.12 + 0.4 + index * 0.08}s`
-                      : "0s",
-                  }}
+                {/* Social Links in Mobile Menu */}
+                <motion.div
+                  className="flex items-center justify-center gap-4 sm:gap-6 mt-auto mb-4"
+                  variants={socialContainer}
+                  initial="hidden"
+                  animate="visible"
                 >
-                  <div className="w-5 h-5 sm:w-6 sm:h-6">
-                    {s.icon === "linkedin" && <LinkedInIcon />}
-                    {s.icon === "github" && <GitHubIcon />}
-                    {s.icon === "email" && <EmailIcon />}
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+                  {SOCIAL.map((s) => (
+                    <motion.a
+                      key={s.label}
+                      href={s.href}
+                      target={s.href.startsWith("http") ? "_blank" : undefined}
+                      rel="noreferrer"
+                      className="p-3 sm:p-4 rounded-xl bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors duration-300 text-white backdrop-blur-sm border border-white/20 hover:border-white/30"
+                      aria-label={s.label}
+                      variants={socialItem}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className="w-5 h-5 sm:w-6 sm:h-6">
+                        {s.icon === "linkedin" && <LinkedInIcon />}
+                        {s.icon === "github" && <GitHubIcon />}
+                        {s.icon === "email" && <EmailIcon />}
+                      </div>
+                    </motion.a>
+                  ))}
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Hero */}
@@ -485,20 +483,44 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div className="order-2 lg:order-1 animate-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/50 to-indigo-900/50 text-blue-300 text-sm font-medium mb-6 hover-glow animate-on-scroll shadow-lg border border-blue-800/30">
+            <motion.div
+              className="order-2 lg:order-1"
+              variants={fadeLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/50 to-indigo-900/50 text-blue-300 text-sm font-medium mb-6 hover-glow shadow-lg border border-blue-800/30"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400" />
                 </span>
                 Available for opportunities
-              </div>
+              </motion.div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-white to-blue-400 bg-clip-text text-transparent animate-on-scroll">
+              <motion.h1
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-white to-blue-400 bg-clip-text text-transparent"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
                 {NAME}
-              </h1>
+              </motion.h1>
 
-              <p className="mt-3 text-sm font-medium text-slate-400 flex items-center gap-2 animate-on-scroll">
+              <motion.p
+                className="mt-3 text-sm font-medium text-slate-400 flex items-center gap-2"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
                 <svg
                   className="w-4 h-4 text-blue-400"
                   fill="none"
@@ -520,59 +542,95 @@ export default function Home() {
                   />
                 </svg>
                 {LOCATION}
-              </p>
+              </motion.p>
 
-              <p className="mt-5 text-xl font-semibold text-slate-200 animate-on-scroll">
+              <motion.p
+                className="mt-5 text-xl font-semibold text-slate-200"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
                 {TAGLINE}
-              </p>
-              <p className="mt-4 text-lg text-slate-300 leading-relaxed animate-on-scroll">
+              </motion.p>
+              <motion.p
+                className="mt-4 text-lg text-slate-300 leading-relaxed"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
                 {SUMMARY}
-              </p>
+              </motion.p>
 
-              <div className="mt-8 flex flex-wrap gap-4 animate-on-scroll">
-                <a
+              <motion.div
+                className="mt-8 flex flex-wrap gap-4"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
+                <motion.a
                   href="#experience"
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToId("experience");
                   }}
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold hover:shadow-xl hover:shadow-blue-500/30 transition-shadow duration-300"
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   View My Work
                   <ArrowIcon />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href="#contact"
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToId("contact");
                   }}
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-slate-800 border-2 border-slate-700 text-white font-semibold hover:bg-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-slate-800 border-2 border-slate-700 text-white font-semibold hover:bg-slate-700 hover:border-slate-600 transition-colors duration-300 shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Get In Touch
-                </a>
-              </div>
+                </motion.a>
+              </motion.div>
 
-              <div className="mt-10 flex items-center gap-4 animate-on-scroll">
-                {SOCIAL.map((s, index) => (
-                  <a
+              <motion.div
+                className="mt-10 flex items-center gap-4"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
+                {SOCIAL.map((s) => (
+                  <motion.a
                     key={s.label}
                     href={s.href}
                     target={s.href.startsWith("http") ? "_blank" : undefined}
                     rel="noreferrer"
-                    className="p-4 rounded-2xl bg-slate-800/80 backdrop-blur-sm border border-slate-700 hover:bg-slate-700 hover:border-slate-600 transition-all duration-300 hover:scale-110 transform shadow-lg hover:shadow-blue-500/20 text-slate-300 hover:text-blue-400"
+                    className="p-4 rounded-2xl bg-slate-800/80 backdrop-blur-sm border border-slate-700 hover:bg-slate-700 hover:border-slate-600 transition-colors duration-300 shadow-lg hover:shadow-blue-500/20 text-slate-300 hover:text-blue-400"
                     aria-label={s.label}
-                    style={{ animationDelay: `${index * 0.1}s` }}
+                    variants={staggerItem}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {s.icon === "linkedin" && <LinkedInIcon />}
                     {s.icon === "github" && <GitHubIcon />}
                     {s.icon === "email" && <EmailIcon />}
-                  </a>
+                  </motion.a>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="order-1 lg:order-2 relative animate-right">
+            <motion.div
+              className="order-1 lg:order-2 relative"
+              variants={fadeRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 z-10">
                 {/* Animated glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full scale-105 opacity-20 blur-2xl -z-10 float-element" />
@@ -591,7 +649,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000 shimmer opacity-0 hover:opacity-100" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -709,14 +767,20 @@ export default function Home() {
         <div className="absolute top-1/4 left-1/4 w-24 h-24 border border-indigo-500/10 rounded-full float-element" style={{ animationDelay: '2s' }} />
 
         <div className="mx-auto max-w-7xl px-6 relative">
-          <div className="text-center mb-16 animate-on-scroll">
+          <motion.div
+            className="text-center mb-16"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <h2 className="text-3xl lg:text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">
               Professional Experience
             </h2>
             <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
               Building impactful solutions at scale with cutting-edge technology
             </p>
-          </div>
+          </motion.div>
 
           <div className="relative max-w-5xl mx-auto">
             {/* Timeline line */}
@@ -724,10 +788,13 @@ export default function Home() {
 
             <div className="space-y-8">
               {EXPERIENCE.map((e, i) => (
-                <div
+                <motion.div
                   key={i}
-                  className="relative animate-on-scroll group"
-                  style={{ animationDelay: `${i * 0.15}s` }}
+                  className="relative group"
+                  variants={createDelayedFadeUp(i * 0.15)}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportOnce}
                 >
                   {/* Timeline dot - positioned to align with the line */}
                   <div className="absolute left-[1.125rem] top-8 w-6 h-6 hidden md:flex items-center justify-center">
@@ -785,7 +852,7 @@ export default function Home() {
                       </ul>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -814,14 +881,20 @@ export default function Home() {
         <div className="absolute top-1/4 right-1/4 w-20 h-20 border border-blue-500/10 rounded-full float-element" style={{ animationDelay: '2s' }} />
 
         <div className="mx-auto max-w-7xl px-6 relative">
-          <div className="text-center mb-16 animate-on-scroll">
+          <motion.div
+            className="text-center mb-16"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <h2 className="text-3xl lg:text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-blue-400 bg-clip-text text-transparent">
               Technical Skills
             </h2>
             <p className="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
               Modern tech stack powering scalable, innovative solutions
             </p>
-          </div>
+          </motion.div>
 
           <div className="max-w-5xl mx-auto">
             {/* Skills organized by category in containers */}
@@ -871,10 +944,12 @@ export default function Home() {
                   };
 
                   return (
-                    <div
+                    <motion.div
                       key={category}
-                      className="animate-on-scroll"
-                      style={{ animationDelay: `${categoryIndex * 0.2}s` }}
+                      variants={createDelayedFadeUp(categoryIndex * 0.2)}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={viewportOnce}
                     >
                       {/* Category container */}
                       <div
@@ -919,14 +994,12 @@ export default function Home() {
                             };
 
                             return (
-                              <div
+                              <motion.div
                                 key={skill}
-                                className="animate-on-scroll"
-                                style={{
-                                  animationDelay: `${
-                                    categoryIndex * 0.2 + skillIndex * 0.1
-                                  }s`,
-                                }}
+                                variants={createDelayedFadeUp(categoryIndex * 0.2 + skillIndex * 0.1)}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={viewportOnce}
                               >
                                 <div
                                   className={`${colors.skillBg} ${colors.skillBorder} ${colors.skillHover} border rounded-xl px-4 py-3 transition-all duration-200 group cursor-default`}
@@ -967,12 +1040,12 @@ export default function Home() {
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              </motion.div>
                             );
                           })}
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 }
               )}
@@ -1009,7 +1082,13 @@ export default function Home() {
         <div className="absolute bottom-1/4 right-1/4 w-12 h-12 bg-blue-500/10 rounded-lg rotate-6 float-delayed" />
 
         <div className="relative mx-auto max-w-7xl px-6">
-          <div className="rounded-3xl border border-slate-700/50 bg-slate-800/20 backdrop-blur-2xl p-12 md:p-20 text-center text-white shadow-2xl animate-on-scroll">
+          <motion.div
+            className="rounded-3xl border border-slate-700/50 bg-slate-800/20 backdrop-blur-2xl p-12 md:p-20 text-center text-white shadow-2xl"
+            variants={scaleIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+          >
             <div className="mb-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-900/30 text-blue-300 text-sm font-medium mb-8 border border-blue-800/30">
                 <span className="relative flex h-2 w-2">
@@ -1033,33 +1112,49 @@ export default function Home() {
               create something impactful together.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 animate-on-scroll">
-              <a
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-6"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
+              <motion.a
                 href="mailto:kevin.ibarra@upr.edu"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 text-white font-bold hover:bg-blue-500 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-blue-600 text-white font-bold hover:bg-blue-500 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <EmailIcon />
                 Email me
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="https://www.linkedin.com/in/kevin-ibarra1/"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 border-slate-600 text-white font-bold hover:bg-slate-800/50 hover:border-slate-500 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 border-slate-600 text-white font-bold hover:bg-slate-800/50 hover:border-slate-500 transition-colors duration-300 backdrop-blur-sm"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <LinkedInIcon />
                 LinkedIn
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
             {/* Additional contact info */}
-            <div className="mt-12 pt-8 border-t border-slate-700/50 animate-on-scroll">
+            <motion.div
+              className="mt-12 pt-8 border-t border-slate-700/50"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+            >
               <p className="text-slate-400 text-sm">
                 Based in {LOCATION} • Available globally for remote work or
                 relocation
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -1089,5 +1184,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </LazyMotion>
   );
 }
