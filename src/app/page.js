@@ -184,19 +184,20 @@ function FloatingPaths({ position, color }) {
             strokeWidth={path.width}
             strokeOpacity={0.04 + path.id * 0.009}
             initial={{
-              pathLength: 0.18,
+              pathLength: 0.24,
               pathOffset: (path.id * 0.028) % 1,
-              opacity: 0,
+              opacity: 0.22,
             }}
             animate={{
               pathOffset: [(path.id * 0.028) % 1, ((path.id * 0.028) % 1) + 1],
-              opacity: [0, 1, 1, 0],
+              opacity: [0.22, 1, 1, 0.18],
             }}
             transition={{
-              duration: 6 + ((path.id * 3) % 6),
-              delay: path.id * 0.04,
+              duration: 4.2 + ((path.id * 3) % 5) * 0.45,
+              delay: (paths.length - 1 - path.id) * 0.028,
               repeat: Infinity,
               ease: "linear",
+              times: [0, 0.08, 0.78, 1],
             }}
           />
         ))}
@@ -398,10 +399,10 @@ export default function Home() {
               transition={{ duration: 2 }}
             >
               {/* Letter-by-letter headline */}
-              <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter">
+              <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter">
                 {[
-                  { text: "We build websites", delay: 0 },
-                  { text: "businesses are proud of.", delay: 0.15 },
+                  { text: "A good business should not", delay: 0 },
+                  { text: "look small online", delay: 0.15 },
                 ].map((line, lineIndex) => (
                   <span key={lineIndex} className="block">
                     {line.text.split(" ").map((word, wordIndex) => (
@@ -445,7 +446,7 @@ export default function Home() {
                 }}
                 className="text-white/40 text-base sm:text-lg mb-10 font-light tracking-wide"
               >
-                Custom design. Custom development. Nothing off the shelf.
+                I build websites that make your business look more established from the first click.
               </m.p>
 
               {/* CTAs */}
@@ -502,7 +503,7 @@ export default function Home() {
               <SectionLabel>Who I Work With</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
               >
                 Built for real businesses
               </m.h2>
@@ -589,7 +590,7 @@ export default function Home() {
                   <div className="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5 text-blue-400 group-hover:bg-blue-500/15 transition-colors duration-300">
                     {item.icon}
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-3">
+                  <h3 className="font-display text-white font-semibold text-xl mb-3">
                     {item.label}
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed">
@@ -614,7 +615,7 @@ export default function Home() {
                 <SectionLabel>Why It Matters</SectionLabel>
                 <m.h2
                   variants={fadeUp}
-                  className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight"
+                  className="font-display text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight"
                 >
                   Your website is your best salesperson — is it doing its job?
                 </m.h2>
@@ -668,7 +669,7 @@ export default function Home() {
                       <CheckIcon className="w-3.5 h-3.5 text-blue-400" />
                     </div>
                     <div>
-                      <h3 className="text-white font-medium mb-1 text-[15px]">
+                      <h3 className="font-display text-white font-medium text-lg mb-1 leading-tight">
                         {item.title}
                       </h3>
                       <p className="text-slate-400 text-sm leading-relaxed">
@@ -695,7 +696,7 @@ export default function Home() {
               <SectionLabel>Services</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
               >
                 What I build for you
               </m.h2>
@@ -727,7 +728,7 @@ export default function Home() {
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <h3 className="text-white font-semibold text-xl mb-3">
+                    <h3 className="font-display text-white font-semibold text-2xl mb-3">
                       {service.title}
                     </h3>
                     <p className="text-slate-400 text-sm leading-relaxed">
@@ -784,7 +785,7 @@ export default function Home() {
               <SectionLabel>How It Works</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
               >
                 From idea to launch — a clear process
               </m.h2>
@@ -814,7 +815,7 @@ export default function Home() {
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="text-white font-semibold text-lg mb-3">
+                  <h3 className="font-display text-white font-semibold text-xl mb-3">
                     {step.title}
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed">
@@ -839,7 +840,7 @@ export default function Home() {
               <SectionLabel>Selected Work</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
               >
                 Projects I&rsquo;ve built
               </m.h2>
@@ -877,7 +878,7 @@ export default function Home() {
                     <p className="text-blue-400 text-xs font-semibold tracking-widest uppercase mb-2">
                       {project.category}
                     </p>
-                    <h3 className="text-white font-semibold text-lg mb-2">
+                    <h3 className="font-display text-white font-semibold text-xl mb-2">
                       {project.title}
                     </h3>
                     <p className="text-slate-400 text-sm leading-relaxed mb-5 flex-1">
@@ -935,7 +936,7 @@ export default function Home() {
                 <SectionLabel>About</SectionLabel>
                 <m.h2
                   variants={fadeUp}
-                  className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight"
+                  className="font-display text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight"
                 >
                   You&rsquo;re getting a developer who actually cares about your
                   results
@@ -970,7 +971,7 @@ export default function Home() {
                     { num: "100%", label: "Custom code" },
                   ].map((stat) => (
                     <m.div key={stat.label} variants={fadeUp}>
-                      <div className="text-2xl sm:text-3xl font-bold text-white mb-1">
+                      <div className="font-display text-2xl sm:text-3xl font-bold text-white mb-1">
                         {stat.num}
                       </div>
                       <div className="text-slate-500 text-sm">{stat.label}</div>
@@ -995,7 +996,7 @@ export default function Home() {
               <SectionLabel>FAQ</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
               >
                 Common questions
               </m.h2>
@@ -1078,7 +1079,7 @@ export default function Home() {
                 <SectionLabel>Let&rsquo;s Work Together</SectionLabel>
                 <m.h2
                   variants={fadeUp}
-                  className="text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight"
+                  className="font-display text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight"
                 >
                   Ready to build your website?
                 </m.h2>
