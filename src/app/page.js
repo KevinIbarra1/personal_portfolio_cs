@@ -104,8 +104,8 @@ const PROJECTS = [
     description:
       "A client management platform for a photography business — streamlining bookings, invoices, and client communication in one place.",
     tech: ["Next.js", "Tailwind CSS", "Supabase", "Resend"],
-    gradientFrom: "from-violet-900/50",
-    gradientTo: "to-violet-950/60",
+    gradientFrom: "from-[#1a1a1a]/70",
+    gradientTo: "to-[#0b1f33]/90",
     initials: "PA",
   },
   {
@@ -114,8 +114,8 @@ const PROJECTS = [
     description:
       "A mobile app for musicians to catalog and organize their music library with real-time sync across all their devices.",
     tech: ["React Native", "Expo", "Firebase"],
-    gradientFrom: "from-emerald-900/50",
-    gradientTo: "to-emerald-950/60",
+    gradientFrom: "from-[#c7683c]/35",
+    gradientTo: "to-[#0b1f33]/90",
     initials: "TL",
   },
   {
@@ -124,8 +124,8 @@ const PROJECTS = [
     description:
       "Automated cost monitoring and reporting for a company's AWS infrastructure, reducing monthly cloud spend significantly.",
     tech: ["AWS", "Python", "Terraform", "GitHub Actions"],
-    gradientFrom: "from-orange-900/50",
-    gradientTo: "to-orange-950/60",
+    gradientFrom: "from-[#c7683c]/45",
+    gradientTo: "to-[#1a1a1a]/85",
     initials: "CC",
   },
 ];
@@ -228,7 +228,7 @@ function SectionLabel({ children }) {
   return (
     <m.p
       variants={fadeUp}
-      className="text-blue-400 text-xs font-semibold tracking-widest uppercase mb-4"
+      className="text-[#c7683c] text-xs font-semibold tracking-widest uppercase mb-4"
     >
       {children}
     </m.p>
@@ -269,19 +269,19 @@ export default function Home() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className="min-h-screen bg-[#060912] text-white selection:bg-blue-500/30 selection:text-white">
+      <div className="min-h-screen bg-[#0b1f33] text-[#f7f4ee] selection:bg-[#c7683c]/30 selection:text-[#f7f4ee]">
         {/* ══ NAVBAR ══════════════════════════════════════════════════════════════ */}
         <header
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
             scrolled
-              ? "bg-[#060912]/88 backdrop-blur-xl border-b border-white/[0.06] shadow-2xl shadow-black/30"
+              ? "bg-[#0b1f33]/88 backdrop-blur-xl border-b border-[#f7f4ee]/[0.08] shadow-2xl shadow-black/30"
               : "bg-transparent"
           }`}
         >
           <nav className="max-w-6xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between">
             <button
               onClick={() => scrollTo("home")}
-              className="font-semibold text-[15px] tracking-tight hover:text-blue-400 transition-colors duration-200"
+              className="font-semibold text-[15px] tracking-tight hover:text-[#c7683c] transition-colors duration-200"
             >
               Kevin Ibarra
             </button>
@@ -291,7 +291,7 @@ export default function Home() {
                 <button
                   key={id}
                   onClick={() => scrollTo(id)}
-                  className="text-sm text-slate-400 hover:text-white transition-colors duration-200"
+                  className="text-sm text-[#f7f4ee]/70 hover:text-[#f7f4ee] transition-colors duration-200"
                 >
                   {label}
                 </button>
@@ -301,7 +301,7 @@ export default function Home() {
             <div className="hidden md:flex">
               <button
                 onClick={() => scrollTo("contact")}
-                className="text-sm bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/25 hover:-translate-y-px"
+                className="text-sm bg-[#c7683c] hover:bg-[#d97a4e] text-[#f7f4ee] px-5 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-[#c7683c]/25 hover:-translate-y-px"
               >
                 Start a Project
               </button>
@@ -309,7 +309,7 @@ export default function Home() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 -mr-2 text-slate-400 hover:text-white transition-colors"
+              className="md:hidden p-2 -mr-2 text-[#f7f4ee]/70 hover:text-[#f7f4ee] transition-colors"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -342,7 +342,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-[#060912] flex flex-col pt-20 px-6 pb-safe"
+              className="fixed inset-0 z-40 bg-[#0b1f33] flex flex-col pt-20 px-6 pb-safe"
             >
               <m.div
                 initial="hidden"
@@ -355,7 +355,7 @@ export default function Home() {
                     key={id}
                     variants={fadeUp}
                     onClick={() => scrollTo(id)}
-                    className="text-3xl font-medium text-left py-5 text-slate-300 hover:text-white transition-colors border-b border-white/[0.05]"
+                    className="text-3xl font-medium text-left py-5 text-[#f7f4ee]/80 hover:text-[#f7f4ee] transition-colors border-b border-[#f7f4ee]/[0.07]"
                   >
                     {label}
                   </m.button>
@@ -369,7 +369,7 @@ export default function Home() {
               >
                 <button
                   onClick={() => scrollTo("contact")}
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-xl font-semibold text-lg transition-colors"
+                  className="w-full bg-[#c7683c] hover:bg-[#d97a4e] text-[#f7f4ee] py-4 rounded-xl font-semibold text-lg transition-colors"
                 >
                   Start a Project
                 </button>
@@ -385,10 +385,8 @@ export default function Home() {
         >
           {/* Animated SVG paths */}
           <div className="absolute inset-0">
-            <FloatingPaths position={1} color="rgb(96, 165, 250)" />{" "}
-            {/* blue-400  — ascending  */}
-            <FloatingPaths position={-1} color="rgb(167, 139, 250)" />{" "}
-            {/* violet-400 — descending */}
+            <FloatingPaths position={1} color="rgb(199, 104, 60)" />{" "}
+            <FloatingPaths position={-1} color="rgb(247, 244, 238)" />{" "}
           </div>
 
           {/* Content */}
@@ -424,7 +422,7 @@ export default function Home() {
                               stiffness: 200,
                               damping: 28,
                             }}
-                            className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-white to-white/80"
+                            className="inline-block text-transparent bg-clip-text bg-gradient-to-b from-[#f7f4ee] to-[#f7f4ee]/80"
                           >
                             {letter}
                           </m.span>
@@ -444,7 +442,7 @@ export default function Home() {
                   delay: 0.7,
                   ease: [0.25, 0.4, 0.25, 1],
                 }}
-                className="text-white/40 text-base sm:text-lg mb-10 font-light tracking-wide"
+                className="text-[#f7f4ee]/58 text-base sm:text-lg mb-10 font-light tracking-wide"
               >
                 I build websites that make your business look more established from the first click.
               </m.p>
@@ -461,10 +459,10 @@ export default function Home() {
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
                 {/* Primary — gradient border button from the component */}
-                <div className="group relative bg-gradient-to-b from-white/10 to-black/10 p-px rounded-2xl backdrop-blur-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="group relative bg-gradient-to-b from-[#f7f4ee]/18 to-[#1a1a1a]/20 p-px rounded-2xl backdrop-blur-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <button
                     onClick={() => scrollTo("contact")}
-                    className="rounded-[1.1rem] px-8 py-4 text-[15px] font-semibold backdrop-blur-md bg-white/95 hover:bg-white text-black transition-all duration-300 group-hover:-translate-y-0.5 border border-black/10"
+                    className="rounded-[1.1rem] px-8 py-4 text-[15px] font-semibold backdrop-blur-md bg-[#f7f4ee] hover:bg-[#fffaf2] text-[#1a1a1a] transition-all duration-300 group-hover:-translate-y-0.5 border border-[#1a1a1a]/10"
                   >
                     <span className="opacity-90 group-hover:opacity-100 transition-opacity">
                       Start a Project
@@ -478,7 +476,7 @@ export default function Home() {
                 {/* Secondary — ghost link */}
                 <button
                   onClick={() => scrollTo("work")}
-                  className="text-white/50 hover:text-white text-[15px] font-medium transition-colors duration-200 px-4 py-4"
+                  className="text-[#f7f4ee]/55 hover:text-[#f7f4ee] text-[15px] font-medium transition-colors duration-200 px-4 py-4"
                 >
                   See My Work →
                 </button>
@@ -487,11 +485,11 @@ export default function Home() {
           </div>
 
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#060912] to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0b1f33] to-transparent pointer-events-none" />
         </section>
 
         {/* ══ WHO I HELP ══════════════════════════════════════════════════════════ */}
-        <section className="py-24 border-t border-white/[0.05]">
+        <section className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <m.div
               initial="hidden"
@@ -503,13 +501,13 @@ export default function Home() {
               <SectionLabel>Who I Work With</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
               >
                 Built for real businesses
               </m.h2>
               <m.p
                 variants={fadeUp}
-                className="text-slate-400 text-lg max-w-lg mx-auto leading-relaxed"
+                className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
               >
                 Whether you&rsquo;re getting started or ready to upgrade, I
                 build websites that match where your business is headed.
@@ -585,15 +583,15 @@ export default function Home() {
                 <m.div
                   key={item.label}
                   variants={fadeUp}
-                  className="group p-7 bg-white/[0.03] border border-white/[0.06] rounded-2xl hover:bg-white/[0.05] hover:border-white/[0.10] transition-all duration-300"
+                  className="group p-7 bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08] rounded-2xl hover:bg-[#f7f4ee]/[0.05] hover:border-[#c7683c]/35 transition-all duration-300"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5 text-blue-400 group-hover:bg-blue-500/15 transition-colors duration-300">
+                  <div className="w-9 h-9 rounded-xl bg-[#c7683c]/12 flex items-center justify-center mb-5 text-[#c7683c] group-hover:bg-[#c7683c]/18 transition-colors duration-300">
                     {item.icon}
                   </div>
-                  <h3 className="font-display text-white font-semibold text-xl mb-3">
+                  <h3 className="font-display text-[#f7f4ee] font-semibold text-xl mb-3">
                     {item.label}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
                     {item.desc}
                   </p>
                 </m.div>
@@ -603,7 +601,7 @@ export default function Home() {
         </section>
 
         {/* ══ WHY IT MATTERS ══════════════════════════════════════════════════════ */}
-        <section className="py-24 border-t border-white/[0.05]">
+        <section className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-16 lg:gap-20 items-center">
               <m.div
@@ -615,13 +613,13 @@ export default function Home() {
                 <SectionLabel>Why It Matters</SectionLabel>
                 <m.h2
                   variants={fadeUp}
-                  className="font-display text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight"
+                  className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-6 leading-tight"
                 >
                   Your website is your best salesperson — is it doing its job?
                 </m.h2>
                 <m.p
                   variants={fadeUp}
-                  className="text-slate-400 leading-relaxed mb-4"
+                  className="text-[#f7f4ee]/68 leading-relaxed mb-4"
                 >
                   It works 24 hours a day, never takes a day off, and reaches
                   every potential client who searches for what you do. A
@@ -631,7 +629,7 @@ export default function Home() {
                 </m.p>
                 <m.p
                   variants={fadeUp}
-                  className="text-slate-400 leading-relaxed"
+                  className="text-[#f7f4ee]/68 leading-relaxed"
                 >
                   A website that looks outdated or is difficult to use sends the
                   wrong message. Visitors leave, and your competitors get the
@@ -663,16 +661,16 @@ export default function Home() {
                   <m.div
                     key={i}
                     variants={fadeUp}
-                    className="group flex gap-4 p-5 bg-white/[0.03] border border-white/[0.06] rounded-xl hover:border-blue-500/20 hover:bg-white/[0.05] transition-all duration-300"
+                    className="group flex gap-4 p-5 bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08] rounded-xl hover:border-[#c7683c]/28 hover:bg-[#f7f4ee]/[0.05] transition-all duration-300"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-blue-600/15 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-blue-600/25 transition-colors duration-300">
-                      <CheckIcon className="w-3.5 h-3.5 text-blue-400" />
+                    <div className="w-8 h-8 rounded-lg bg-[#c7683c]/14 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#c7683c]/20 transition-colors duration-300">
+                      <CheckIcon className="w-3.5 h-3.5 text-[#c7683c]" />
                     </div>
                     <div>
-                      <h3 className="font-display text-white font-medium text-lg mb-1 leading-tight">
+                      <h3 className="font-display text-[#f7f4ee] font-medium text-lg mb-1 leading-tight">
                         {item.title}
                       </h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">
+                      <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -684,7 +682,7 @@ export default function Home() {
         </section>
 
         {/* ══ SERVICES ════════════════════════════════════════════════════════════ */}
-        <section id="services" className="py-24 border-t border-white/[0.05]">
+        <section id="services" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <m.div
               initial="hidden"
@@ -696,13 +694,13 @@ export default function Home() {
               <SectionLabel>Services</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
               >
                 What I build for you
               </m.h2>
               <m.p
                 variants={fadeUp}
-                className="text-slate-400 text-lg max-w-lg mx-auto leading-relaxed"
+                className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
               >
                 Each project is custom-built to fit your business, your brand,
                 and your goals.
@@ -720,29 +718,29 @@ export default function Home() {
                 <m.div
                   key={service.title}
                   variants={fadeUp}
-                  className="group flex flex-col p-8 bg-white/[0.03] border border-white/[0.06] rounded-2xl hover:bg-white/[0.05] hover:border-blue-500/20 transition-all duration-300"
+                  className="group flex flex-col p-8 bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08] rounded-2xl hover:bg-[#f7f4ee]/[0.05] hover:border-[#c7683c]/30 transition-all duration-300"
                 >
                   <div className="mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:bg-blue-500/15 transition-colors duration-300">
-                      <span className="text-blue-400 font-mono text-sm font-semibold">
+                    <div className="w-10 h-10 rounded-xl bg-[#c7683c]/12 flex items-center justify-center mb-6 group-hover:bg-[#c7683c]/18 transition-colors duration-300">
+                      <span className="text-[#c7683c] font-mono text-sm font-semibold">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
-                    <h3 className="font-display text-white font-semibold text-2xl mb-3">
+                    <h3 className="font-display text-[#f7f4ee] font-semibold text-2xl mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">
+                    <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
                       {service.description}
                     </p>
                   </div>
-                  <div className="mt-auto pt-6 border-t border-white/[0.05]">
+                  <div className="mt-auto pt-6 border-t border-[#f7f4ee]/[0.08]">
                     <ul className="space-y-2.5">
                       {service.features.map((f) => (
                         <li
                           key={f}
-                          className="flex items-center gap-2.5 text-sm text-slate-500"
+                          className="flex items-center gap-2.5 text-sm text-[#f7f4ee]/55"
                         >
-                          <div className="w-1 h-1 rounded-full bg-blue-500 flex-shrink-0" />
+                          <div className="w-1 h-1 rounded-full bg-[#c7683c] flex-shrink-0" />
                           {f}
                         </li>
                       ))}
@@ -761,7 +759,7 @@ export default function Home() {
             >
               <button
                 onClick={() => scrollTo("contact")}
-                className="group inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 hover:shadow-2xl hover:shadow-blue-500/25 hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 bg-[#c7683c] hover:bg-[#d97a4e] text-[#f7f4ee] px-8 py-4 rounded-xl font-semibold transition-all duration-200 hover:shadow-2xl hover:shadow-[#c7683c]/25 hover:-translate-y-0.5"
               >
                 Discuss Your Project
                 <span className="transition-transform duration-200 group-hover:translate-x-0.5">
@@ -773,7 +771,7 @@ export default function Home() {
         </section>
 
         {/* ══ PROCESS ═════════════════════════════════════════════════════════════ */}
-        <section id="process" className="py-24 border-t border-white/[0.05]">
+        <section id="process" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <m.div
               initial="hidden"
@@ -785,13 +783,13 @@ export default function Home() {
               <SectionLabel>How It Works</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
               >
                 From idea to launch — a clear process
               </m.h2>
               <m.p
                 variants={fadeUp}
-                className="text-slate-400 text-lg max-w-lg mx-auto leading-relaxed"
+                className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
               >
                 No confusion, no surprises. I keep things simple so you always
                 know what&rsquo;s happening and what&rsquo;s next.
@@ -808,17 +806,17 @@ export default function Home() {
               {STEPS.map((step, i) => (
                 <m.div key={step.number} variants={fadeUp} className="relative">
                   {i < STEPS.length - 1 && (
-                    <div className="hidden lg:block absolute top-5 left-full w-full h-px bg-gradient-to-r from-blue-500/20 via-blue-500/10 to-transparent pointer-events-none" />
+                    <div className="hidden lg:block absolute top-5 left-full w-full h-px bg-gradient-to-r from-[#c7683c]/30 via-[#f7f4ee]/12 to-transparent pointer-events-none" />
                   )}
-                  <div className="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center mb-5">
-                    <span className="text-blue-400 font-mono text-xs font-semibold">
+                  <div className="w-10 h-10 rounded-xl bg-[#c7683c]/12 border border-[#c7683c]/24 flex items-center justify-center mb-5">
+                    <span className="text-[#c7683c] font-mono text-xs font-semibold">
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="font-display text-white font-semibold text-xl mb-3">
+                  <h3 className="font-display text-[#f7f4ee] font-semibold text-xl mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
                     {step.description}
                   </p>
                 </m.div>
@@ -828,7 +826,7 @@ export default function Home() {
         </section>
 
         {/* ══ PORTFOLIO / SELECTED WORK ═══════════════════════════════════════════ */}
-        <section id="work" className="py-24 border-t border-white/[0.05]">
+        <section id="work" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <m.div
               initial="hidden"
@@ -840,13 +838,13 @@ export default function Home() {
               <SectionLabel>Selected Work</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
               >
                 Projects I&rsquo;ve built
               </m.h2>
               <m.p
                 variants={fadeUp}
-                className="text-slate-400 text-lg max-w-lg mx-auto leading-relaxed"
+                className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
               >
                 A few examples of what I&rsquo;ve shipped. Every project is
                 different, but the standard is always the same.
@@ -864,31 +862,31 @@ export default function Home() {
                 <m.div
                   key={project.title}
                   variants={fadeUp}
-                  className="group flex flex-col bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden hover:border-white/[0.12] hover:bg-white/[0.04] transition-all duration-300"
+                  className="group flex flex-col bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08] rounded-2xl overflow-hidden hover:border-[#c7683c]/30 hover:bg-[#f7f4ee]/[0.05] transition-all duration-300"
                 >
                   <div
                     className={`aspect-video bg-gradient-to-br ${project.gradientFrom} ${project.gradientTo} flex items-center justify-center relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 grid-pattern-subtle opacity-50" />
-                    <span className="relative z-10 font-bold text-5xl text-white/10 font-mono select-none tracking-tight">
+                    <span className="relative z-10 font-bold text-5xl text-[#f7f4ee]/12 font-mono select-none tracking-tight">
                       {project.initials}
                     </span>
                   </div>
                   <div className="flex flex-col flex-1 p-6">
-                    <p className="text-blue-400 text-xs font-semibold tracking-widest uppercase mb-2">
+                    <p className="text-[#c7683c] text-xs font-semibold tracking-widest uppercase mb-2">
                       {project.category}
                     </p>
-                    <h3 className="font-display text-white font-semibold text-xl mb-2">
+                    <h3 className="font-display text-[#f7f4ee] font-semibold text-xl mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-5 flex-1">
+                    <p className="text-[#f7f4ee]/68 text-sm leading-relaxed mb-5 flex-1">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {project.tech.map((t) => (
                         <span
                           key={t}
-                          className="text-xs text-slate-500 bg-white/[0.04] border border-white/[0.06] px-2.5 py-1 rounded-full"
+                          className="text-xs text-[#f7f4ee]/55 bg-[#f7f4ee]/[0.04] border border-[#f7f4ee]/[0.08] px-2.5 py-1 rounded-full"
                         >
                           {t}
                         </span>
@@ -902,7 +900,7 @@ export default function Home() {
         </section>
 
         {/* ══ ABOUT / TRUST ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 border-t border-white/[0.05]">
+        <section className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <m.div
@@ -913,8 +911,8 @@ export default function Home() {
                 className="order-2 lg:order-1"
               >
                 <div className="relative max-w-sm mx-auto lg:mx-0">
-                  <div className="absolute -inset-6 bg-blue-600/[0.07] rounded-3xl blur-3xl pointer-events-none" />
-                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/[0.08] bg-slate-900">
+                  <div className="absolute -inset-6 bg-[#c7683c]/12 rounded-3xl blur-3xl pointer-events-none" />
+                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[#f7f4ee]/[0.08] bg-[#1a1a1a]">
                     <Image
                       src="/IMG_2698.jpg"
                       alt="Kevin Ibarra"
@@ -936,14 +934,14 @@ export default function Home() {
                 <SectionLabel>About</SectionLabel>
                 <m.h2
                   variants={fadeUp}
-                  className="font-display text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight"
+                  className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-6 leading-tight"
                 >
                   You&rsquo;re getting a developer who actually cares about your
                   results
                 </m.h2>
                 <m.p
                   variants={fadeUp}
-                  className="text-slate-400 leading-relaxed mb-4"
+                  className="text-[#f7f4ee]/68 leading-relaxed mb-4"
                 >
                   I&rsquo;m Kevin, a full-stack developer based in Puerto Rico.
                   I&rsquo;ve spent years building web applications for companies
@@ -953,7 +951,7 @@ export default function Home() {
                 </m.p>
                 <m.p
                   variants={fadeUp}
-                  className="text-slate-400 leading-relaxed mb-10"
+                  className="text-[#f7f4ee]/68 leading-relaxed mb-10"
                 >
                   I started offering web design services for businesses because
                   I kept seeing great businesses held back by a poor online
@@ -963,7 +961,7 @@ export default function Home() {
 
                 <m.div
                   variants={stagger}
-                  className="grid grid-cols-3 gap-6 pt-8 border-t border-white/[0.06]"
+                  className="grid grid-cols-3 gap-6 pt-8 border-t border-[#f7f4ee]/[0.08]"
                 >
                   {[
                     { num: "3+", label: "Years building" },
@@ -971,10 +969,10 @@ export default function Home() {
                     { num: "100%", label: "Custom code" },
                   ].map((stat) => (
                     <m.div key={stat.label} variants={fadeUp}>
-                      <div className="font-display text-2xl sm:text-3xl font-bold text-white mb-1">
+                      <div className="font-display text-2xl sm:text-3xl font-bold text-[#f7f4ee] mb-1">
                         {stat.num}
                       </div>
-                      <div className="text-slate-500 text-sm">{stat.label}</div>
+                      <div className="text-[#f7f4ee]/55 text-sm">{stat.label}</div>
                     </m.div>
                   ))}
                 </m.div>
@@ -984,7 +982,7 @@ export default function Home() {
         </section>
 
         {/* ══ FAQ ═════════════════════════════════════════════════════════════════ */}
-        <section id="faq" className="py-24 border-t border-white/[0.05]">
+        <section id="faq" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-2xl mx-auto px-5 sm:px-6">
             <m.div
               initial="hidden"
@@ -996,13 +994,13 @@ export default function Home() {
               <SectionLabel>FAQ</SectionLabel>
               <m.h2
                 variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-white mb-4"
+                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
               >
                 Common questions
               </m.h2>
               <m.p
                 variants={fadeUp}
-                className="text-slate-400 text-lg leading-relaxed"
+                className="text-[#f7f4ee]/68 text-lg leading-relaxed"
               >
                 Straightforward answers to what most people ask before getting
                 started.
@@ -1020,17 +1018,17 @@ export default function Home() {
                 <m.div
                   key={i}
                   variants={fadeUp}
-                  className="border border-white/[0.06] rounded-xl overflow-hidden"
+                  className="border border-[#f7f4ee]/[0.08] rounded-xl overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-start justify-between p-6 text-left hover:bg-white/[0.02] transition-colors gap-4 group"
+                    className="w-full flex items-start justify-between p-6 text-left hover:bg-[#f7f4ee]/[0.03] transition-colors gap-4 group"
                   >
-                    <span className="text-white font-medium text-[15px] leading-snug">
+                    <span className="text-[#f7f4ee] font-medium text-[15px] leading-snug">
                       {faq.q}
                     </span>
                     <span
-                      className={`text-slate-400 text-xl flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover:text-slate-300 ${
+                      className={`text-[#f7f4ee]/60 text-xl flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover:text-[#c7683c] ${
                         openFaq === i ? "rotate-45" : ""
                       }`}
                     >
@@ -1048,8 +1046,8 @@ export default function Home() {
                         transition={{ duration: 0.3, ease }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 border-t border-white/[0.04]">
-                          <p className="pt-4 text-slate-400 text-sm leading-relaxed">
+                        <div className="px-6 pb-6 border-t border-[#f7f4ee]/[0.06]">
+                          <p className="pt-4 text-[#f7f4ee]/68 text-sm leading-relaxed">
                             {faq.a}
                           </p>
                         </div>
@@ -1063,29 +1061,29 @@ export default function Home() {
         </section>
 
         {/* ══ FINAL CTA / CONTACT ═════════════════════════════════════════════════ */}
-        <section id="contact" className="py-24 border-t border-white/[0.05]">
+        <section id="contact" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-4xl mx-auto px-5 sm:px-6">
             <m.div
               initial="hidden"
               whileInView="show"
               viewport={vp}
               variants={stagger}
-              className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-white/[0.02] p-10 sm:p-16 text-center"
+              className="relative rounded-3xl overflow-hidden border border-[#f7f4ee]/[0.08] bg-[#f7f4ee]/[0.03] p-10 sm:p-16 text-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/[0.09] via-transparent to-indigo-600/[0.06] pointer-events-none" />
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[#c7683c]/[0.14] via-transparent to-[#1a1a1a]/[0.12] pointer-events-none" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px bg-gradient-to-r from-transparent via-[#c7683c]/60 to-transparent" />
 
               <div className="relative">
                 <SectionLabel>Let&rsquo;s Work Together</SectionLabel>
                 <m.h2
                   variants={fadeUp}
-                  className="font-display text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight"
+                  className="font-display text-4xl sm:text-5xl font-bold text-[#f7f4ee] mb-5 leading-tight"
                 >
                   Ready to build your website?
                 </m.h2>
                 <m.p
                   variants={fadeUp}
-                  className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto mb-10"
+                  className="text-[#f7f4ee]/68 text-lg leading-relaxed max-w-xl mx-auto mb-10"
                 >
                   Tell me about your business and what you need. I&rsquo;ll get
                   back to you within 24 hours and we&rsquo;ll figure out the
@@ -1098,7 +1096,7 @@ export default function Home() {
                 >
                   <a
                     href="mailto:kevini.ibarra@gmail.com"
-                    className="group inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-xl font-semibold text-[15px] transition-all duration-200 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-0.5"
+                    className="group inline-flex items-center gap-2 bg-[#c7683c] hover:bg-[#d97a4e] text-[#f7f4ee] px-10 py-4 rounded-xl font-semibold text-[15px] transition-all duration-200 hover:shadow-2xl hover:shadow-[#c7683c]/30 hover:-translate-y-0.5"
                   >
                     Get in Touch
                     <span className="transition-transform duration-200 group-hover:translate-x-0.5">
@@ -1109,17 +1107,17 @@ export default function Home() {
                     href="https://www.linkedin.com/in/kevin-ibarra1/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-white/[0.12] hover:border-white/25 text-slate-300 hover:text-white px-10 py-4 rounded-xl font-medium text-[15px] transition-all duration-200"
+                    className="inline-flex items-center gap-2 border border-[#f7f4ee]/[0.14] hover:border-[#c7683c]/40 text-[#f7f4ee]/78 hover:text-[#f7f4ee] px-10 py-4 rounded-xl font-medium text-[15px] transition-all duration-200"
                   >
                     Connect on LinkedIn
                   </a>
                 </m.div>
 
-                <m.p variants={fadeUp} className="text-slate-600 text-sm mt-8">
+                <m.p variants={fadeUp} className="text-[#f7f4ee]/50 text-sm mt-8">
                   Or email directly at{" "}
                   <a
                     href="mailto:kevini.ibarra@gmail.com"
-                    className="text-slate-500 hover:text-slate-300 transition-colors underline underline-offset-2 decoration-slate-700"
+                    className="text-[#f7f4ee]/60 hover:text-[#f7f4ee] transition-colors underline underline-offset-2 decoration-[#c7683c]/60"
                   >
                     kevini.ibarra@gmail.com
                   </a>
@@ -1130,15 +1128,15 @@ export default function Home() {
         </section>
 
         {/* ══ FOOTER ══════════════════════════════════════════════════════════════ */}
-        <footer className="border-t border-white/[0.05] py-8">
+        <footer className="border-t border-[#f7f4ee]/[0.07] py-8">
           <div className="max-w-6xl mx-auto px-5 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-slate-600 text-sm">
+            <p className="text-[#f7f4ee]/50 text-sm">
               © {new Date().getFullYear()} Kevin Ibarra. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a
                 href="mailto:kevini.ibarra@gmail.com"
-                className="text-slate-600 hover:text-slate-300 text-sm transition-colors"
+                className="text-[#f7f4ee]/50 hover:text-[#f7f4ee] text-sm transition-colors"
               >
                 Email
               </a>
@@ -1146,7 +1144,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/kevin-ibarra1/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-600 hover:text-slate-300 text-sm transition-colors"
+                className="text-[#f7f4ee]/50 hover:text-[#f7f4ee] text-sm transition-colors"
               >
                 LinkedIn
               </a>
@@ -1154,7 +1152,7 @@ export default function Home() {
                 href="https://github.com/KevinIbarra1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-600 hover:text-slate-300 text-sm transition-colors"
+                className="text-[#f7f4ee]/50 hover:text-[#f7f4ee] text-sm transition-colors"
               >
                 GitHub
               </a>
