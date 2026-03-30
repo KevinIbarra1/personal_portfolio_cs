@@ -28,9 +28,9 @@ const vp = { once: true, amount: 0.15 };
 // ─── Site Data ─────────────────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  ["Services", "services"],
-  ["Work", "work"],
+  ["About", "services"],
   ["Process", "process"],
+  ["Work", "work"],
   ["FAQ", "faq"],
 ];
 
@@ -105,7 +105,7 @@ const PROJECTS = [
       "A client management platform for a photography business — streamlining bookings, invoices, and client communication in one place.",
     tech: ["Next.js", "Tailwind CSS", "Supabase", "Resend"],
     gradientFrom: "from-[#1a1a1a]/70",
-    gradientTo: "to-[#0b1f33]/90",
+    gradientTo: "to-[#08182a]/90",
     initials: "PA",
   },
   {
@@ -115,7 +115,7 @@ const PROJECTS = [
       "A mobile app for musicians to catalog and organize their music library with real-time sync across all their devices.",
     tech: ["React Native", "Expo", "Firebase"],
     gradientFrom: "from-[#c7683c]/35",
-    gradientTo: "to-[#0b1f33]/90",
+    gradientTo: "to-[#08182a]/90",
     initials: "TL",
   },
   {
@@ -269,12 +269,12 @@ export default function Home() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <div className="min-h-screen bg-[#0b1f33] text-[#f7f4ee] selection:bg-[#c7683c]/30 selection:text-[#f7f4ee]">
+      <div className="min-h-screen bg-[#08182a] text-[#f7f4ee] selection:bg-[#c7683c]/30 selection:text-[#f7f4ee]">
         {/* ══ NAVBAR ══════════════════════════════════════════════════════════════ */}
         <header
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
             scrolled
-              ? "bg-[#0b1f33]/88 backdrop-blur-xl border-b border-[#f7f4ee]/[0.08] shadow-2xl shadow-black/30"
+              ? "bg-[#08182a]/88 backdrop-blur-xl border-b border-[#f7f4ee]/[0.08] shadow-2xl shadow-black/30"
               : "bg-transparent"
           }`}
         >
@@ -342,7 +342,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-[#0b1f33] flex flex-col pt-20 px-6 pb-safe"
+              className="fixed inset-0 z-40 bg-[#08182a] flex flex-col pt-20 px-6 pb-safe"
             >
               <m.div
                 initial="hidden"
@@ -485,205 +485,79 @@ export default function Home() {
           </div>
 
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0b1f33] to-transparent pointer-events-none" />
-        </section>
-
-        {/* ══ WHO I HELP ══════════════════════════════════════════════════════════ */}
-        <section className="py-24 border-t border-[#f7f4ee]/[0.07]">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6">
-            <m.div
-              initial="hidden"
-              whileInView="show"
-              viewport={vp}
-              variants={stagger}
-              className="text-center mb-14"
-            >
-              <SectionLabel>Who I Work With</SectionLabel>
-              <m.h2
-                variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
-              >
-                Built for real businesses
-              </m.h2>
-              <m.p
-                variants={fadeUp}
-                className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
-              >
-                Whether you&rsquo;re getting started or ready to upgrade, I
-                build websites that match where your business is headed.
-              </m.p>
-            </m.div>
-
-            <m.div
-              initial="hidden"
-              whileInView="show"
-              viewport={vp}
-              variants={stagger}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4"
-            >
-              {[
-                {
-                  label: "No website yet",
-                  desc: "You're running a real business but don't have a proper website — or your online presence is just a social media page that doesn't do you justice.",
-                  icon: (
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  ),
-                },
-                {
-                  label: "Outdated website",
-                  desc: "Your current site looks like it was built years ago. It's not mobile-friendly, hard to update, and doesn't reflect the quality of your business anymore.",
-                  icon: (
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  ),
-                },
-                {
-                  label: "Need more clients online",
-                  desc: "You have a website but it's not generating leads. Visitors aren't reaching out, and you know something is off — but you're not sure what.",
-                  icon: (
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                      />
-                    </svg>
-                  ),
-                },
-              ].map((item) => (
-                <m.div
-                  key={item.label}
-                  variants={fadeUp}
-                  className="group p-7 bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08] rounded-2xl hover:bg-[#f7f4ee]/[0.05] hover:border-[#c7683c]/35 transition-all duration-300"
-                >
-                  <div className="w-9 h-9 rounded-xl bg-[#c7683c]/12 flex items-center justify-center mb-5 text-[#c7683c] group-hover:bg-[#c7683c]/18 transition-colors duration-300">
-                    {item.icon}
-                  </div>
-                  <h3 className="font-display text-[#f7f4ee] font-semibold text-xl mb-3">
-                    {item.label}
-                  </h3>
-                  <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </m.div>
-              ))}
-            </m.div>
-          </div>
-        </section>
-
-        {/* ══ WHY IT MATTERS ══════════════════════════════════════════════════════ */}
-        <section className="py-24 border-t border-[#f7f4ee]/[0.07]">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-16 lg:gap-20 items-center">
-              <m.div
-                initial="hidden"
-                whileInView="show"
-                viewport={vp}
-                variants={stagger}
-              >
-                <SectionLabel>Why It Matters</SectionLabel>
-                <m.h2
-                  variants={fadeUp}
-                  className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-6 leading-tight"
-                >
-                  Your website is your best salesperson — is it doing its job?
-                </m.h2>
-                <m.p
-                  variants={fadeUp}
-                  className="text-[#f7f4ee]/68 leading-relaxed mb-4"
-                >
-                  It works 24 hours a day, never takes a day off, and reaches
-                  every potential client who searches for what you do. A
-                  well-built website doesn&rsquo;t just look good — it builds
-                  trust, answers questions, and moves visitors toward reaching
-                  out.
-                </m.p>
-                <m.p
-                  variants={fadeUp}
-                  className="text-[#f7f4ee]/68 leading-relaxed"
-                >
-                  A website that looks outdated or is difficult to use sends the
-                  wrong message. Visitors leave, and your competitors get the
-                  business instead.
-                </m.p>
-              </m.div>
-
-              <m.div
-                initial="hidden"
-                whileInView="show"
-                viewport={vp}
-                variants={stagger}
-                className="flex flex-col gap-4"
-              >
-                {[
-                  {
-                    title: "First impressions happen in seconds",
-                    desc: "Visitors form an opinion about your business before they've read a single word. Your website needs to earn their trust immediately.",
-                  },
-                  {
-                    title: "Most clients search online first",
-                    desc: "If you don't have a credible online presence, you're losing potential clients before they even know you exist.",
-                  },
-                  {
-                    title: "A strong website keeps working while you sleep",
-                    desc: "Answer questions, showcase your services, and capture leads — all without you having to be there.",
-                  },
-                ].map((item, i) => (
-                  <m.div
-                    key={i}
-                    variants={fadeUp}
-                    className="group flex gap-4 p-5 bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08] rounded-xl hover:border-[#c7683c]/28 hover:bg-[#f7f4ee]/[0.05] transition-all duration-300"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#c7683c]/14 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#c7683c]/20 transition-colors duration-300">
-                      <CheckIcon className="w-3.5 h-3.5 text-[#c7683c]" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-[#f7f4ee] font-medium text-lg mb-1 leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </m.div>
-                ))}
-              </m.div>
-            </div>
-          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#08182a] to-transparent pointer-events-none" />
         </section>
 
         {/* ══ SERVICES ════════════════════════════════════════════════════════════ */}
         <section id="services" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-16 items-start mb-16">
+              <m.div
+                initial="hidden"
+                whileInView="show"
+                viewport={vp}
+                variants={fadeLeft}
+              >
+                <div className="relative max-w-sm mx-auto lg:mx-0">
+                  <div className="absolute -inset-6 bg-[#c7683c]/12 rounded-3xl blur-3xl pointer-events-none" />
+                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[#f7f4ee]/[0.08] bg-[#1a1a1a]">
+                    <Image
+                      src="/IMG_2698.jpg"
+                      alt="Kevin Ibarra"
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 80vw, 40vw"
+                    />
+                  </div>
+                </div>
+              </m.div>
+
+              <m.div
+                initial="hidden"
+                whileInView="show"
+                viewport={vp}
+                variants={stagger}
+              >
+                <SectionLabel>About / Services</SectionLabel>
+                <m.h2
+                  variants={fadeUp}
+                  className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-6 leading-tight"
+                >
+                  You&rsquo;re getting strategy, design, and development in one focused build process
+                </m.h2>
+                <m.p
+                  variants={fadeUp}
+                  className="text-[#f7f4ee]/68 leading-relaxed mb-4"
+                >
+                  I&rsquo;m Kevin, a full-stack developer based in Puerto Rico. I build custom websites for businesses that need to look more established online and turn more visitors into real conversations.
+                </m.p>
+                <m.p
+                  variants={fadeUp}
+                  className="text-[#f7f4ee]/68 leading-relaxed mb-10"
+                >
+                  Every project is built from scratch around your offer, your audience, and the impression your business needs to make from the first click.
+                </m.p>
+
+                <m.div
+                  variants={stagger}
+                  className="grid grid-cols-3 gap-6 pt-8 border-t border-[#f7f4ee]/[0.08]"
+                >
+                  {[
+                    { num: "3+", label: "Years building" },
+                    { num: "10+", label: "Projects shipped" },
+                    { num: "100%", label: "Custom code" },
+                  ].map((stat) => (
+                    <m.div key={stat.label} variants={fadeUp}>
+                      <div className="font-display text-2xl sm:text-3xl font-bold text-[#f7f4ee] mb-1">
+                        {stat.num}
+                      </div>
+                      <div className="text-[#f7f4ee]/55 text-sm">{stat.label}</div>
+                    </m.div>
+                  ))}
+                </m.div>
+              </m.div>
+            </div>
+
             <m.div
               initial="hidden"
               whileInView="show"
@@ -767,65 +641,56 @@ export default function Home() {
                 </span>
               </button>
             </m.div>
-          </div>
-        </section>
 
-        {/* ══ PROCESS ═════════════════════════════════════════════════════════════ */}
-        <section id="process" className="py-24 border-t border-[#f7f4ee]/[0.07]">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <m.div
+              id="process"
               initial="hidden"
               whileInView="show"
               viewport={vp}
               variants={stagger}
-              className="text-center mb-14"
+              className="mt-20"
             >
-              <SectionLabel>How It Works</SectionLabel>
-              <m.h2
-                variants={fadeUp}
-                className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
-              >
-                From idea to launch — a clear process
-              </m.h2>
-              <m.p
-                variants={fadeUp}
-                className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
-              >
-                No confusion, no surprises. I keep things simple so you always
-                know what&rsquo;s happening and what&rsquo;s next.
-              </m.p>
-            </m.div>
+              <div className="text-center mb-14">
+                <SectionLabel>Process</SectionLabel>
+                <m.h2
+                  variants={fadeUp}
+                  className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
+                >
+                  From idea to launch, the process stays clear
+                </m.h2>
+                <m.p
+                  variants={fadeUp}
+                  className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
+                >
+                  No confusion, no surprises. You always know what&rsquo;s happening, what I&rsquo;m building, and what comes next.
+                </m.p>
+              </div>
 
-            <m.div
-              initial="hidden"
-              whileInView="show"
-              viewport={vp}
-              variants={stagger}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
-            >
-              {STEPS.map((step, i) => (
-                <m.div key={step.number} variants={fadeUp} className="relative">
-                  {i < STEPS.length - 1 && (
-                    <div className="hidden lg:block absolute top-5 left-full w-full h-px bg-gradient-to-r from-[#c7683c]/30 via-[#f7f4ee]/12 to-transparent pointer-events-none" />
-                  )}
-                  <div className="w-10 h-10 rounded-xl bg-[#c7683c]/12 border border-[#c7683c]/24 flex items-center justify-center mb-5">
-                    <span className="text-[#c7683c] font-mono text-xs font-semibold">
-                      {step.number}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-[#f7f4ee] font-semibold text-xl mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </m.div>
-              ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {STEPS.map((step, i) => (
+                  <m.div key={step.number} variants={fadeUp} className="relative">
+                    {i < STEPS.length - 1 && (
+                      <div className="hidden lg:block absolute top-5 left-full w-full h-px bg-gradient-to-r from-[#c7683c]/30 via-[#f7f4ee]/12 to-transparent pointer-events-none" />
+                    )}
+                    <div className="w-10 h-10 rounded-xl bg-[#c7683c]/12 border border-[#c7683c]/24 flex items-center justify-center mb-5">
+                      <span className="text-[#c7683c] font-mono text-xs font-semibold">
+                        {step.number}
+                      </span>
+                    </div>
+                    <h3 className="font-display text-[#f7f4ee] font-semibold text-xl mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-[#f7f4ee]/68 text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                  </m.div>
+                ))}
+              </div>
             </m.div>
           </div>
         </section>
 
-        {/* ══ PORTFOLIO / SELECTED WORK ═══════════════════════════════════════════ */}
+        {/* ══ WORK / SOCIAL PROOF ════════════════════════════════════════════════ */}
         <section id="work" className="py-24 border-t border-[#f7f4ee]/[0.07]">
           <div className="max-w-6xl mx-auto px-5 sm:px-6">
             <m.div
@@ -835,19 +700,18 @@ export default function Home() {
               variants={stagger}
               className="text-center mb-14"
             >
-              <SectionLabel>Selected Work</SectionLabel>
+              <SectionLabel>Work / Social Proof</SectionLabel>
               <m.h2
                 variants={fadeUp}
                 className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-4"
               >
-                Projects I&rsquo;ve built
+                Projects backed by real product and engineering experience
               </m.h2>
               <m.p
                 variants={fadeUp}
                 className="text-[#f7f4ee]/68 text-lg max-w-lg mx-auto leading-relaxed"
               >
-                A few examples of what I&rsquo;ve shipped. Every project is
-                different, but the standard is always the same.
+                A few examples of what I&rsquo;ve shipped. The work is different, but the standard stays the same: clarity, performance, and credibility.
               </m.p>
             </m.div>
 
@@ -896,88 +760,27 @@ export default function Home() {
                 </m.div>
               ))}
             </m.div>
-          </div>
-        </section>
-
-        {/* ══ ABOUT / TRUST ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 border-t border-[#f7f4ee]/[0.07]">
-          <div className="max-w-6xl mx-auto px-5 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <m.div
-                initial="hidden"
-                whileInView="show"
-                viewport={vp}
-                variants={fadeLeft}
-                className="order-2 lg:order-1"
-              >
-                <div className="relative max-w-sm mx-auto lg:mx-0">
-                  <div className="absolute -inset-6 bg-[#c7683c]/12 rounded-3xl blur-3xl pointer-events-none" />
-                  <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[#f7f4ee]/[0.08] bg-[#1a1a1a]">
-                    <Image
-                      src="/IMG_2698.jpg"
-                      alt="Kevin Ibarra"
-                      fill
-                      className="object-cover object-top"
-                      sizes="(max-width: 1024px) 80vw, 40vw"
-                    />
-                  </div>
-                </div>
-              </m.div>
-
-              <m.div
-                initial="hidden"
-                whileInView="show"
-                viewport={vp}
-                variants={stagger}
-                className="order-1 lg:order-2"
-              >
-                <SectionLabel>About</SectionLabel>
-                <m.h2
-                  variants={fadeUp}
-                  className="font-display text-3xl sm:text-4xl font-bold text-[#f7f4ee] mb-6 leading-tight"
-                >
-                  You&rsquo;re getting a developer who actually cares about your
-                  results
-                </m.h2>
-                <m.p
-                  variants={fadeUp}
-                  className="text-[#f7f4ee]/68 leading-relaxed mb-4"
-                >
-                  I&rsquo;m Kevin, a full-stack developer based in Puerto Rico.
-                  I&rsquo;ve spent years building web applications for companies
-                  ranging from startups to enterprise — and I&rsquo;ve seen
-                  firsthand what separates a website that converts from one that
-                  just sits there.
-                </m.p>
-                <m.p
-                  variants={fadeUp}
-                  className="text-[#f7f4ee]/68 leading-relaxed mb-10"
-                >
-                  I started offering web design services for businesses because
-                  I kept seeing great businesses held back by a poor online
-                  presence. I build websites that are fast, clean, and designed
-                  to generate real results — not just look good on a screen.
-                </m.p>
-
+            <m.div
+              initial="hidden"
+              whileInView="show"
+              viewport={vp}
+              variants={stagger}
+              className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12"
+            >
+              {[
+                "Custom-coded builds tailored to the business, not a generic template.",
+                "Experience across product design, development, and real production systems.",
+                "A process centered on credibility, usability, and conversion from the start.",
+              ].map((point) => (
                 <m.div
-                  variants={stagger}
-                  className="grid grid-cols-3 gap-6 pt-8 border-t border-[#f7f4ee]/[0.08]"
+                  key={point}
+                  variants={fadeUp}
+                  className="p-6 rounded-2xl bg-[#f7f4ee]/[0.03] border border-[#f7f4ee]/[0.08]"
                 >
-                  {[
-                    { num: "3+", label: "Years building" },
-                    { num: "10+", label: "Projects shipped" },
-                    { num: "100%", label: "Custom code" },
-                  ].map((stat) => (
-                    <m.div key={stat.label} variants={fadeUp}>
-                      <div className="font-display text-2xl sm:text-3xl font-bold text-[#f7f4ee] mb-1">
-                        {stat.num}
-                      </div>
-                      <div className="text-[#f7f4ee]/55 text-sm">{stat.label}</div>
-                    </m.div>
-                  ))}
+                  <p className="text-[#f7f4ee]/72 leading-relaxed">{point}</p>
                 </m.div>
-              </m.div>
-            </div>
+              ))}
+            </m.div>
           </div>
         </section>
 
