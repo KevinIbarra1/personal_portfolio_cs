@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060912;
+  --foreground: #f0f4ff;
 }
 
 @theme inline {
@@ -12,60 +12,73 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Mobile viewport fixes */
-.safe-area-inset {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+/* ── Grid background patterns ─────────────────────────── */
+
+/* Ultra-subtle — used in hero and project cards */
+.grid-pattern-subtle {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
-/* Ensure proper touch targets for mobile menu */
-.mobile-menu-overlay a {
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+/* Standard blue grid */
+.grid-pattern-blue {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-/* Fix for iOS viewport units */
-@supports (height: 100dvh) {
-  .mobile-menu-overlay {
-    height: 100dvh !important;
-  }
+.grid-pattern-blue-sm {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-/* Continuous animations - kept as CSS for better performance */
+.grid-pattern-indigo {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: 55px 55px;
+}
+
+.grid-pattern-blue-light {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ── Continuous animations ────────────────────────────── */
+
 @keyframes floatAnimation {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-16px); }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
 }
 
-/* Floating elements */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
 .float-element {
   animation: floatAnimation 6s ease-in-out infinite;
 }
@@ -74,49 +87,31 @@ body {
   animation: floatAnimation 6s ease-in-out infinite 2s;
 }
 
-/* Shimmer effect */
 .shimmer {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.35) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
 
-/* Hover glow effects */
-.hover-glow {
-  transition: all 0.3s ease;
+/* ── Utility ──────────────────────────────────────────── */
+
+/* Mobile safe-area support for full-screen overlays */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 24px);
 }
 
-.hover-glow:hover {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-  transform: translateY(-5px);
+.mobile-menu-overlay a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-/* Background grid patterns - optimized for reuse */
-.grid-pattern-blue {
-  background-image: linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.grid-pattern-blue-sm {
-  background-image: linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-.grid-pattern-indigo {
-  background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
-  background-size: 55px 55px;
-}
-
-.grid-pattern-blue-light {
-  background-image: linear-gradient(rgba(59, 130, 246, 0.12) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
-  background-size: 50px 50px;
+@supports (height: 100dvh) {
+  .mobile-menu-overlay {
+    height: 100dvh !important;
+  }
 }

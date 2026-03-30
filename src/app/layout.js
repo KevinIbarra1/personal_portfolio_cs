@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Kevin Ibarra",
-  description: "Kevin's Portfolio",
+  title: "Kevin Ibarra — Web Design & Development",
+  description: "I design and build custom websites for small businesses and local services that want to look professional online and attract more clients.",
 };
 
 export default function RootLayout({ children }) {
